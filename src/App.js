@@ -8,7 +8,7 @@ const App = ({...rest}) => {
     return (
         <div>
             <img src={Logo} alt="logo" />
-            <h1>Hello Parcel world</h1>
+            <h1>Hello Parcel warudo</h1>
         </div>
     )
 }
