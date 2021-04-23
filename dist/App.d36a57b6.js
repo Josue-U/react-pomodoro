@@ -29668,7 +29668,7 @@ var App = function App(_ref) {
   }), /*#__PURE__*/_react.default.createElement("h1", null, "Hello Parcel warudo"));
 };
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById('root'));
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById("root"));
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./App.css":"App.css","./App.scss":"App.scss","./saitamaimages.png":"saitamaimages.png"}],"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
