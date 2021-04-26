@@ -29606,15 +29606,22 @@ var Pomo = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Pomo);
 
   function Pomo() {
+    var _this;
+
     _classCallCheck(this, Pomo);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this);
+    _this.state = {
+      breakLength: 5,
+      sessionLength: 25
+    };
+    return _this;
   }
 
   _createClass(Pomo, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro Kurokuru"));
+      return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro Kuroku"));
     }
   }]);
 

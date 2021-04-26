@@ -1,11 +1,21 @@
 import React from "react";
 
 class Pomo extends React.Component{
+    constructor(){
+        super();
+
+        this.state = {
+            breakLength: 5,
+            sessionLength: 25
+        }
+    };
+
+
     render() {
         return(
-            <div>
-            <h1>Pomodoro Kurokuru</h1>
-        </div>
+            <main>
+                <h1>Pomodoro Kuroku</h1>
+            </main>
         )
         
     };
