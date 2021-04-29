@@ -1,8 +1,91 @@
-h1 {
-    color: green;
+body{
+    background-color: black; 
 }
-body {
-  background-color: black;
+
+main{
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  font-size: 4rem;
+  font-weight: 400;
+  color: aquamarine;
+  
+}
+
+h4{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: aquamarine;
+
+}
+
+.interval-container{
+  display: flex;
+  margin: 0 40px;
+  align-items: center;
+  color: aquamarine;
+}
+
+.interval-length-container{
+  display: flex;
+}
+
+button{
+  padding: 5px 10px;
+  margin:  0 10px;
+  height: 25px;
+  background-color: aquamarine;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: rgb(27, 26, 26);
+  width: 80px;
+  border-radius: 16px;
+
+}
+
+button:hover{
+  background-color: rgb(65, 255, 144);
+  transform: scale(1.10);
+}
+
+button:disabled{
+  cursor: not-allowed;
+}
+
+.interval-length{
+  font-size: 2rem;
+  margin:  0 10px;
+}
+
+.timer-container{
+  border: 2px solid aquamarine;
+  margin-top: 40px;
+  border-radius: 48px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.50);
+  padding: 60px;
+  
+ 
+}
+
+.timer{
+  font-size: 2rem;
+  color: aquamarine;
+}
+
+.timer-actions{
+  margin-top: 20px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=/App.d36a57b6.css.map */

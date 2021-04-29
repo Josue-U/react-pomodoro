@@ -29566,7 +29566,79 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"components/Pomo.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/BreakInterval.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29575,6 +29647,248 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function BreakInterval(props) {
+  function decreaseCounter() {
+    if (props.breakInterval === 1) {
+      return;
+    }
+
+    props.decreaseBreak();
+  }
+
+  function increaseCounter() {
+    if (props.breakInterval === 60) {
+      return;
+    }
+
+    props.increaseBreak();
+  }
+
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Break"), /*#__PURE__*/_react.default.createElement("section", {
+    className: "interval-container"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
+    onClick: decreaseCounter
+  }, "-"), /*#__PURE__*/_react.default.createElement("p", {
+    className: "interval-length"
+  }, props.breakInterval), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
+    onClick: increaseCounter
+  }, "+")));
+}
+
+var _default = BreakInterval;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"components/SessionLength.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function SessionLength(props) {
+  function increaseSession() {
+    if (props.sessionLength === 60) {
+      return;
+    }
+
+    props.increaseSession();
+  }
+
+  function decreaseSession() {
+    if (props.sessionLength === 1) {
+      return;
+    }
+
+    props.decreaseSession();
+  }
+
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Session"), /*#__PURE__*/_react.default.createElement("section", {
+    className: "interval-container"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
+    onClick: decreaseSession
+  }, "-"), /*#__PURE__*/_react.default.createElement("p", {
+    className: "interval-length"
+  }, props.sessionLength), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
+    onClick: increaseSession
+  }, "+")));
+}
+
+var _default = SessionLength;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"components/Timer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Timer = /*#__PURE__*/function (_React$Component) {
+  _inherits(Timer, _React$Component);
+
+  var _super = _createSuper(Timer);
+
+  function Timer() {
+    var _this;
+
+    _classCallCheck(this, Timer);
+
+    _this = _super.call(this);
+    _this.state = {
+      isSession: true,
+      timerSecond: 0,
+      intervalId: 0
+    };
+    _this.playTimer = _this.playTimer.bind(_assertThisInitialized(_this));
+    _this.decreaseTimer = _this.decreaseTimer.bind(_assertThisInitialized(_this));
+    _this.stopTimer = _this.stopTimer.bind(_assertThisInitialized(_this));
+    _this.resetTimer = _this.resetTimer.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Timer, [{
+    key: "playTimer",
+    value: function playTimer() {
+      var intervalId = setInterval(this.decreaseTimer, 1000);
+      this.props.onPlayStopTimer(true);
+      this.setState({
+        intervalId: intervalId
+      });
+    }
+  }, {
+    key: "decreaseTimer",
+    value: function decreaseTimer() {
+      switch (this.state.timerSecond) {
+        case 0:
+          if (this.props.timerMinute === 0) {
+            if (this.state.isSession) {
+              this.setState({
+                isSession: false
+              });
+              this.props.toggleInterval(this.state.isSession);
+            } else {
+              this.setState({
+                isSession: true
+              });
+              this.props.toggleInterval(this.state.isSession);
+            }
+          } else {
+            this.props.updateTimerMinute();
+            this.setState({
+              timerSecond: 59
+            });
+          }
+
+          break;
+
+        default:
+          this.setState(function (prevState) {
+            return {
+              timerSecond: prevState.timerSecond - 1
+            };
+          });
+          break;
+      }
+    }
+  }, {
+    key: "stopTimer",
+    value: function stopTimer() {
+      clearInterval(this.state.intervalId);
+      this.props.onPlayStopTimer(false);
+    }
+  }, {
+    key: "resetTimer",
+    value: function resetTimer() {
+      this.stopTimer();
+      this.props.resetTimer();
+      this.props.onPlayStopTimer(false);
+      this.setState({
+        timerSecond: 0,
+        isSession: true
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("section", {
+        className: "timer-container"
+      }, /*#__PURE__*/_react.default.createElement("h4", null, this.state.isSession === true ? "Session" : "Break"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "timer"
+      }, this.props.timerMinute), /*#__PURE__*/_react.default.createElement("span", {
+        className: "timer"
+      }, ":"), /*#__PURE__*/_react.default.createElement("span", {
+        className: "timer"
+      }, this.state.timerSecond === 0 ? "00" : this.state.timerSecond < 10 ? "0" + this.state.timerSecond : this.state.timerSecond)), /*#__PURE__*/_react.default.createElement("section", {
+        className: "timer-actions"
+      }, /*#__PURE__*/_react.default.createElement("button", {
+        onClick: this.playTimer
+      }, "Play"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: this.stopTimer
+      }, "Stop"), /*#__PURE__*/_react.default.createElement("button", {
+        onClick: this.resetTimer
+      }, "Reset")));
+    }
+  }]);
+
+  return Timer;
+}(_react.default.Component);
+
+var _default = Timer;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"components/Pomo.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+require("../index.css");
+
+var _BreakInterval = _interopRequireDefault(require("./BreakInterval"));
+
+var _SessionLength = _interopRequireDefault(require("./SessionLength"));
+
+var _Timer = _interopRequireDefault(require("./Timer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29613,25 +29927,127 @@ var Pomo = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {
       breakLength: 5,
-      sessionLength: 25
+      sessionLength: 25,
+      timerMinute: 25,
+      isPlay: false
     };
+    _this.onIncreaseBreakLength = _this.onIncreaseBreakLength.bind(_assertThisInitialized(_this));
+    _this.onDecreaseBreakLength = _this.onDecreaseBreakLength.bind(_assertThisInitialized(_this));
+    _this.onIncreaseSessionLength = _this.onIncreaseSessionLength.bind(_assertThisInitialized(_this));
+    _this.onDecreaseSessionLength = _this.onDecreaseSessionLength.bind(_assertThisInitialized(_this));
+    _this.onUpdateTimerMinute = _this.onUpdateTimerMinute.bind(_assertThisInitialized(_this));
+    _this.onToggleInterval = _this.onToggleInterval.bind(_assertThisInitialized(_this));
+    _this.onResetTimer = _this.onResetTimer.bind(_assertThisInitialized(_this));
+    _this.onPlayStopTimer = _this.onPlayStopTimer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Pomo, [{
+    key: "onIncreaseBreakLength",
+    value: function onIncreaseBreakLength() {
+      this.setState(function (prevState) {
+        return {
+          breakLength: prevState.breakLength + 1
+        };
+      });
+    }
+  }, {
+    key: "onDecreaseBreakLength",
+    value: function onDecreaseBreakLength() {
+      this.setState(function (prevState) {
+        return {
+          breakLength: prevState.breakLength - 1
+        };
+      });
+    }
+  }, {
+    key: "onIncreaseSessionLength",
+    value: function onIncreaseSessionLength() {
+      this.setState(function (prevState) {
+        return {
+          sessionLength: prevState.sessionLength + 1,
+          timerMinute: prevState.sessionLength + 1
+        };
+      });
+    }
+  }, {
+    key: "onDecreaseSessionLength",
+    value: function onDecreaseSessionLength() {
+      this.setState(function (prevState) {
+        return {
+          sessionLength: prevState.sessionLength - 1,
+          timerMinute: prevState.sessionLength - 1
+        };
+      });
+    }
+  }, {
+    key: "onUpdateTimerMinute",
+    value: function onUpdateTimerMinute() {
+      this.setState(function (prevState) {
+        return {
+          timerMinute: prevState.timerMinute - 1
+        };
+      });
+    }
+  }, {
+    key: "onToggleInterval",
+    value: function onToggleInterval(isSession) {
+      if (isSession) {
+        this.setState({
+          timerMinute: this.state.sessionLength
+        });
+      } else {
+        this.setState({
+          timerMinute: this.state.breakLength
+        });
+      }
+    }
+  }, {
+    key: "onResetTimer",
+    value: function onResetTimer() {
+      this.setState({
+        timerMinute: this.state.sessionLength
+      });
+    }
+  }, {
+    key: "onPlayStopTimer",
+    value: function onPlayStopTimer(isPlay) {
+      this.setState({
+        isPlay: isPlay
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro Kuroku"));
+      return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro Clock"), /*#__PURE__*/_react.default.createElement("section", {
+        className: "interval-length-container"
+      }, /*#__PURE__*/_react.default.createElement(_BreakInterval.default, {
+        isPlay: this.state.isPlay,
+        breakInterval: this.state.breakLength,
+        increaseBreak: this.onIncreaseBreakLength,
+        decreaseBreak: this.onDecreaseBreakLength
+      }), /*#__PURE__*/_react.default.createElement(_SessionLength.default, {
+        isPlay: this.state.isPlay,
+        sessionLength: this.state.sessionLength,
+        increaseSession: this.onIncreaseSessionLength,
+        decreaseSession: this.onDecreaseSessionLength
+      })), /*#__PURE__*/_react.default.createElement(_Timer.default, {
+        timerMinute: this.state.timerMinute,
+        breakTimer: this.state.breakLength,
+        updateTimerMinute: this.onUpdateTimerMinute,
+        toggleInterval: this.onToggleInterval,
+        resetTimer: this.onResetTimer,
+        onPlayStopTimer: this.onPlayStopTimer
+      }));
     }
   }]);
 
   return Pomo;
 }(_react.default.Component);
 
-;
 var _default = Pomo;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../index.css":"index.css","./BreakInterval":"components/BreakInterval.js","./SessionLength":"components/SessionLength.js","./Timer":"components/Timer.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -29671,7 +30087,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41263" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42865" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
