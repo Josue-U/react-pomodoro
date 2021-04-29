@@ -30059,7 +30059,7 @@ var _Pomo = _interopRequireDefault(require("./components/Pomo"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(_Pomo.default, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Pomo":"components/Pomo.js"}],"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Pomo":"components/Pomo.js"}],"../../../../usr/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -30087,7 +30087,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34271" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35697" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -30263,5 +30263,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","App.js"], null)
-//# sourceMappingURL=/App.d36a57b6.js.map
+},{}]},{},["../../../../usr/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","App.js"], null)
+//# sourceMappingURL=/App.f684dadd.js.map
